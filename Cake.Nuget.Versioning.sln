@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.Nuget.Versioning", "Cake.Nuget.Versioning\Cake.Nuget.Versioning.csproj", "{90978F74-AF1E-4BE8-89FB-3966145B6478}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Nuget.Versioning.Test", "Cake.Nuget.Versioning.Test\Cake.Nuget.Versioning.Test.csproj", "{C0D6018C-DECD-4D25-B980-064CDE037BF6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90978F74-AF1E-4BE8-89FB-3966145B6478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90978F74-AF1E-4BE8-89FB-3966145B6478}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90978F74-AF1E-4BE8-89FB-3966145B6478}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90978F74-AF1E-4BE8-89FB-3966145B6478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0D6018C-DECD-4D25-B980-064CDE037BF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0D6018C-DECD-4D25-B980-064CDE037BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0D6018C-DECD-4D25-B980-064CDE037BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0D6018C-DECD-4D25-B980-064CDE037BF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
