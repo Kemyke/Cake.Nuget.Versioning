@@ -155,7 +155,6 @@ namespace Cake.Nuget.Versioning
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
-        /// <param name="major">The major part of the version</param>
         /// <param name="major">The major part of the version (1st)</param>
         /// <param name="minor">The minor part of the version (2nd)</param>
         /// <param name="patch">The patch part of the version (3rd)</param>
@@ -184,7 +183,6 @@ namespace Cake.Nuget.Versioning
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
-        /// <param name="major">The major part of the version</param>
         /// <param name="major">The major part of the version (1st)</param>
         /// <param name="minor">The minor part of the version (2nd)</param>
         /// <param name="patch">The patch part of the version (3rd)</param>
@@ -207,7 +205,6 @@ namespace Cake.Nuget.Versioning
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
-        /// <param name="major">The major part of the version</param>
         /// <param name="major">The major part of the version (1st)</param>
         /// <param name="minor">The minor part of the version (2nd)</param>
         /// <param name="patch">The patch part of the version (3rd)</param>
@@ -235,7 +232,6 @@ namespace Cake.Nuget.Versioning
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
-        /// <param name="major">The major part of the version</param>
         /// <param name="major">The major part of the version (1st)</param>
         /// <param name="minor">The minor part of the version (2nd)</param>
         /// <param name="patch">The patch part of the version (3rd)</param>
@@ -257,7 +253,6 @@ namespace Cake.Nuget.Versioning
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
-        /// <param name="major">The major part of the version</param>
         /// <param name="major">The major part of the version (1st)</param>
         /// <param name="minor">The minor part of the version (2nd)</param>
         /// <param name="patch">The patch part of the version (3rd)</param>
@@ -286,11 +281,11 @@ namespace Cake.Nuget.Versioning
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
-        /// <param name="major">The major part of the version</param>
         /// <param name="major">The major part of the version (1st)</param>
         /// <param name="minor">The minor part of the version (2nd)</param>
         /// <param name="patch">The patch part of the version (3rd)</param>
         /// <param name="branch">Branch name for creating the version suffix</param>
+        /// <param name="hash">Hash of the last commit</param>
         /// <returns>The nuget compatible version</returns>
         [CakeMethodAlias]
         public static string BuildNugetVersionFromBranchSemVer200(this ICakeContext context, int major, int minor, int patch, string branch, string hash = null)
@@ -308,7 +303,6 @@ namespace Cake.Nuget.Versioning
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
-        /// <param name="major">The major part of the version</param>
         /// <param name="major">The major part of the version (1st)</param>
         /// <param name="minor">The minor part of the version (2nd)</param>
         /// <param name="patch">The patch part of the version (3rd)</param>
@@ -332,7 +326,6 @@ namespace Cake.Nuget.Versioning
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
-        /// <param name="major">The major part of the version</param>
         /// <param name="major">The major part of the version (1st)</param>
         /// <param name="minor">The minor part of the version (2nd)</param>
         /// <param name="patch">The patch part of the version (3rd)</param>
@@ -355,7 +348,6 @@ namespace Cake.Nuget.Versioning
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
-        /// <param name="major">The major part of the version</param>
         /// <param name="major">The major part of the version (1st)</param>
         /// <param name="minor">The minor part of the version (2nd)</param>
         /// <param name="patch">The patch part of the version (3rd)</param>

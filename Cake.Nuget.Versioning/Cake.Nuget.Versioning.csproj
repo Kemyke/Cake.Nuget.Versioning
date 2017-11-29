@@ -2,12 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <Version>0.0.6</Version>
+    <Version>0.0.7</Version>
     <Description>Cake Build addon to build Nuget version numbers</Description>
     <Copyright>Copyright 2017</Copyright>
     <Authors>Attila Kemeny</Authors>
     <PackageId>Cake.Nuget.Versioning</PackageId>
     <AssemblyName>Cake.Nuget.Versioning</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageProjectUrl>https://github.com/Kemyke/Cake.Nuget.Versioning</PackageProjectUrl>
+    <PackageTags>Cake Nuget Version SemVer</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
