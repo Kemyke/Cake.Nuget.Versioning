@@ -2,12 +2,27 @@
 using Cake.Core.Annotations;
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace Cake.Nuget.Versioning
 {
-    public static class NugetVersioning
+    /// <summary>
+    /// Contains functionality for creating Nuget compatible version numbers
+    /// </summary>
+    public static class NugetVersioningAliases
     {
+        /// <summary>
+        /// Create nuget compatible version from the parameters. 
+        /// If branch names and other settings are provided it created a valid suffix for the version.
+        /// You can't just use the current branch name because it can be too long or starts with numbers. 
+        /// You can trim string from the branch name to create more readable versions.
+        /// </summary>
+        [CompilerGenerated]
+        internal class NamespaceDoc
+        {
+        }
+
         private static string GetSuffixSeparator(bool isPrerelease = true)
         {
             if(isPrerelease)
@@ -131,7 +146,22 @@ namespace Cake.Nuget.Versioning
             return normalizedSuffix.Substring(0, Math.Min(normalizedSuffix.Length, maxLength));
         }
 
-
+        /// <summary>
+        /// Build a nuget compatible version from a branch.
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// var version = BuildNugetVersionFromBranch(1, 0, 0, 0, settings);
+        /// </code>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="major">The major part of the version</param>
+        /// <param name="major">The major part of the version (1st)</param>
+        /// <param name="minor">The minor part of the version (2nd)</param>
+        /// <param name="patch">The patch part of the version (3rd)</param>
+        /// <param name="build">The build part of the version (4th)</param>
+        /// <param name="settings">Settings for building the version suffix. At least BranchName should be filled. Otherwise ArgumentNullException is thrown.</param>
+        /// <returns>The nuget compatible version</returns>
         [CakeMethodAlias]
         public static string BuildNugetVersionFromBranch(this ICakeContext context, int major, int minor, int patch, int build, BuildNugetVersionFromBranchSettings settings)
         {
@@ -145,6 +175,22 @@ namespace Cake.Nuget.Versioning
             return $"{version}{suffix}";
         }
 
+        /// <summary>
+        /// Build a nuget compatible version from a branch.
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// var version = BuildNugetVersionFromBranch(1, 0, 0, 0, "feature/newfunction");
+        /// </code>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="major">The major part of the version</param>
+        /// <param name="major">The major part of the version (1st)</param>
+        /// <param name="minor">The minor part of the version (2nd)</param>
+        /// <param name="patch">The patch part of the version (3rd)</param>
+        /// <param name="build">The build part of the version (4th)</param>
+        /// <param name="branch">Branch name for creating the version suffix</param>
+        /// <returns>The nuget compatible version</returns>
         [CakeMethodAlias]
         public static string BuildNugetVersionFromBranch(this ICakeContext context, int major, int minor, int patch, int build, string branch)
         {
@@ -152,6 +198,21 @@ namespace Cake.Nuget.Versioning
             return BuildNugetVersionFromBranch(context, major, minor, patch, build, settings);
         }
 
+        /// <summary>
+        /// Build a nuget compatible version from a branch.
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// var version = BuildNugetVersionFromBranch(1, 0, 0, settings);
+        /// </code>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="major">The major part of the version</param>
+        /// <param name="major">The major part of the version (1st)</param>
+        /// <param name="minor">The minor part of the version (2nd)</param>
+        /// <param name="patch">The patch part of the version (3rd)</param>
+        /// <param name="settings">Settings for building the version suffix. At least BranchName should be filled. Otherwise ArgumentNullException is thrown.</param>
+        /// <returns>The nuget compatible version</returns>
         [CakeMethodAlias]
         public static string BuildNugetVersionFromBranch(this ICakeContext context, int major, int minor, int patch, BuildNugetVersionFromBranchSettings settings)
         {
@@ -165,6 +226,21 @@ namespace Cake.Nuget.Versioning
             return $"{version}{suffix}";
         }
 
+        /// <summary>
+        /// Build a nuget compatible version from a branch.
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// var version = BuildNugetVersionFromBranch(1, 0, 0, "feature/newfunction");
+        /// </code>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="major">The major part of the version</param>
+        /// <param name="major">The major part of the version (1st)</param>
+        /// <param name="minor">The minor part of the version (2nd)</param>
+        /// <param name="patch">The patch part of the version (3rd)</param>
+        /// <param name="branch">Branch name for creating the version suffix</param>
+        /// <returns>The nuget compatible version</returns>
         [CakeMethodAlias]
         public static string BuildNugetVersionFromBranch(this ICakeContext context, int major, int minor, int patch, string branch)
         {
@@ -172,6 +248,21 @@ namespace Cake.Nuget.Versioning
             return BuildNugetVersionFromBranch(context, major, minor, patch, settings);
         }
 
+        /// <summary>
+        /// Build a Nuget 3.0 compatible version from a branch. (SemVer 2.0.0)
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// var version = BuildNugetVersionFromBranchSemVer200(1, 0, 0, settings);
+        /// </code>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="major">The major part of the version</param>
+        /// <param name="major">The major part of the version (1st)</param>
+        /// <param name="minor">The minor part of the version (2nd)</param>
+        /// <param name="patch">The patch part of the version (3rd)</param>
+        /// <param name="settings">Settings for building the version suffix. At least BranchName should be filled. Otherwise ArgumentNullException is thrown.</param>
+        /// <returns>The nuget compatible version</returns>
         [CakeMethodAlias]
         public static string BuildNugetVersionFromBranchSemVer200(this ICakeContext context, int major, int minor, int patch, BuildNugetVersionFromBranchSemVer200Settings settings)
         {
@@ -186,6 +277,21 @@ namespace Cake.Nuget.Versioning
 
         }
 
+        /// <summary>
+        /// Build a Nuget 3.0 compatible version from a branch. (SemVer 2.0.0)
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// var version = BuildNugetVersionFromBranchSemVer200(1, 0, 0, "feature/newfunction");
+        /// </code>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="major">The major part of the version</param>
+        /// <param name="major">The major part of the version (1st)</param>
+        /// <param name="minor">The minor part of the version (2nd)</param>
+        /// <param name="patch">The patch part of the version (3rd)</param>
+        /// <param name="branch">Branch name for creating the version suffix</param>
+        /// <returns>The nuget compatible version</returns>
         [CakeMethodAlias]
         public static string BuildNugetVersionFromBranchSemVer200(this ICakeContext context, int major, int minor, int patch, string branch, string hash = null)
         {
@@ -193,7 +299,22 @@ namespace Cake.Nuget.Versioning
             return BuildNugetVersionFromBranchSemVer200(context, major, minor, patch, settings);
         }
 
-
+        /// <summary>
+        /// Build a nuget compatible version from a branch.
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// var version = BuildNugetVersion(1, 0, 0, 0, "newfunction");
+        /// </code>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="major">The major part of the version</param>
+        /// <param name="major">The major part of the version (1st)</param>
+        /// <param name="minor">The minor part of the version (2nd)</param>
+        /// <param name="patch">The patch part of the version (3rd)</param>
+        /// <param name="build">The build part of the version (4th)</param>
+        /// <param name="suffix">The version suffix</param>
+        /// <returns>The nuget compatible version</returns>
         [CakeMethodAlias]
         public static string BuildNugetVersion(this ICakeContext context, int major, int minor, int patch, int build, string suffix)
         {
@@ -202,6 +323,21 @@ namespace Cake.Nuget.Versioning
             return $"{version}{GetSuffixSeparator()}{normalizedSuffix}";
         }
 
+        /// <summary>
+        /// Build a nuget compatible version from a branch.
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// var version = BuildNugetVersion(1, 0, 0, "newfunction");
+        /// </code>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="major">The major part of the version</param>
+        /// <param name="major">The major part of the version (1st)</param>
+        /// <param name="minor">The minor part of the version (2nd)</param>
+        /// <param name="patch">The patch part of the version (3rd)</param>
+        /// <param name="suffix">The version suffix</param>
+        /// <returns>The nuget compatible version</returns>
         [CakeMethodAlias]
         public static string BuildNugetVersion(this ICakeContext context, int major, int minor, int patch, string suffix)
         {
@@ -210,6 +346,22 @@ namespace Cake.Nuget.Versioning
             return $"{version}{GetSuffixSeparator()}{normalizedSuffix}";
         }
 
+        /// <summary>
+        /// Build a nuget compatible version from a branch.
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// var version = BuildNugetSemVer200(1, 0, 0, "newfunction");
+        /// </code>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="major">The major part of the version</param>
+        /// <param name="major">The major part of the version (1st)</param>
+        /// <param name="minor">The minor part of the version (2nd)</param>
+        /// <param name="patch">The patch part of the version (3rd)</param>
+        /// <param name="suffix">The version suffix</param>
+        /// <param name="prerelease">The suffix indicates a pre-release or a final release version</param>
+        /// <returns>The nuget compatible version</returns>
         [CakeMethodAlias]
         public static string BuildNugetSemVer200(this ICakeContext context, int major, int minor, int patch, string suffix, bool prerelease)
         {
