@@ -108,5 +108,33 @@ namespace Cake.Nuget.Versioning.Test
             string version = new TestContext().BuildNugetVersionFromBranchSemVer200(1, 0, 0, settings);
             Assert.Equal("1.0.0-test-cake-version", version);
         }
+
+        [Fact]
+        public void Test15()
+        {
+            string version = new TestContext().BuildNugetVersionFromBranch(1, 0, 0, "feature/release_cake_version");
+            Assert.Equal("1.0.0-feature-release-cak", version);
+        }
+
+        [Fact]
+        public void Test16()
+        {
+            string version = new TestContext().BuildNugetVersionFromBranch(1, 0, 0, "feature/master_cake_version");
+            Assert.Equal("1.0.0-feature-master-cake", version);
+        }
+
+        [Fact]
+        public void Test17()
+        {
+            string version = new TestContext().BuildNugetVersionFromBranch(1, 0, 0, "refs/heads/feature/release_cake_version");
+            Assert.Equal("1.0.0-feature-release-cak", version);
+        }
+
+        [Fact]
+        public void Test18()
+        {
+            string version = new TestContext().BuildNugetVersionFromBranch(1, 0, 0, "refs/heads/feature/master_cake_version");
+            Assert.Equal("1.0.0-feature-master-cake", version);
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace Cake.Nuget.Versioning
         /// If the branch name match with one of the regexp in this array, the branch is
         /// identified as a final branch. The version won't contain pre-release suffix.
         /// </summary>
-        public string[] PreReleaseFilters { get; set; } = new[] { "master", "release" };
+        public string[] PreReleaseFilters { get; set; } = new[] { "^master$", "^release/" };
         /// <summary>
         /// If true "refs/heads/", "refs/tags/" and "refs/remotes/" are trimmed from the beginning of the branch name.
         /// </summary>
