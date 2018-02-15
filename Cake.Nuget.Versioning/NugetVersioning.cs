@@ -137,13 +137,13 @@ namespace Cake.Nuget.Versioning
         private static string NormalizeSuffix(string suffix, int maxLength)
         {
             var normalizedSuffix = Regex.Replace(suffix, "[^A-Za-z0-9]", "-");
-            return normalizedSuffix.Substring(0, Math.Min(normalizedSuffix.Length, maxLength));
+            return normalizedSuffix.Substring(0, Math.Min(normalizedSuffix.Length, maxLength)).TrimEnd('-');
         }
 
         private static string NormalizeSuffixSemVer2(string suffix, int maxLength)
         {
             var normalizedSuffix = Regex.Replace(suffix, "[^A-Za-z0-9+.]", "-");
-            return normalizedSuffix.Substring(0, Math.Min(normalizedSuffix.Length, maxLength));
+            return normalizedSuffix.Substring(0, Math.Min(normalizedSuffix.Length, maxLength)).TrimEnd('-');
         }
 
         /// <summary>

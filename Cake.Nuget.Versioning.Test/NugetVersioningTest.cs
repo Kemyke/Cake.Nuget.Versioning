@@ -68,7 +68,7 @@ namespace Cake.Nuget.Versioning.Test
         {
             var settings = new BuildNugetVersionFromBranchSettings { BranchName = "refs/heads/feature/test_cake_version", FilterGitReferences = false };
             string version = new TestContext().BuildNugetVersionFromBranch(1, 0, 0, settings);
-            Assert.Equal("1.0.0-refs-heads-feature-", version);
+            Assert.Equal("1.0.0-refs-heads-feature", version);
         }
 
         [Fact]
