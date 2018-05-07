@@ -46,5 +46,9 @@ namespace Cake.Nuget.Versioning
         /// Hash of the last commit
         /// </summary>
         public string Hash { get; set; }
+        /// <summary>
+        /// Ordered commit number
+        /// </summary>
+        public int? BranchChangeNumber { get; set; } = null;
     }
 }

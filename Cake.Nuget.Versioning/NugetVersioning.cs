@@ -92,6 +92,7 @@ namespace Cake.Nuget.Versioning
         {
             string branch = settings.BranchName;
             string hash = settings.Hash;
+            int? branchChangeNumber = settings.BranchChangeNumber;
             string suffix = string.Empty;
 
             if (settings.FilterGitReferences)
@@ -107,6 +108,8 @@ namespace Cake.Nuget.Versioning
                 }
             }
 
+            branch = branch.Substring(0, Math.Min(branch.Length, 200));
+
             if (settings.PreReleaseFilters != null && settings.PreReleaseFilters.All(f => !Regex.IsMatch(branch, f)))
             {
                 if (IsBranchPrefixNecessary(branch) || settings.AlwaysApplyBranchPrefix)
@@ -114,13 +117,15 @@ namespace Cake.Nuget.Versioning
                     branch = $"{settings.BranchPrefix}{branch}";
                 }
 
-                if (hash == null)
+                suffix = $"{GetSuffixSeparator(true)}{branch}";
+                
+                if(branchChangeNumber != null)
                 {
-                    suffix = $"{GetSuffixSeparator(true)}{branch}";
+                    suffix += $".{branchChangeNumber}";
                 }
-                else
+                if (hash != null)
                 {
-                    suffix = $"{GetSuffixSeparator(true)}{branch}.{hash}";
+                    suffix += $".{hash}";
                 }
             }
             else
