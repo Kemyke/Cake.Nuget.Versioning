@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.0.11</Version>
+    <Version>0.0.12</Version>
     <Description>Cake Build addon to build Nuget version numbers</Description>
     <Copyright>Copyright 2017</Copyright>
     <Authors>Attila Kemeny</Authors>
