@@ -22,14 +22,16 @@ namespace Cake.Nuget.Versioning.Test
         [Fact]
         public void Test3()
         {
-            string version = new TestContext().BuildNugetVersionFromBranch(1, 0, 0, "refs/heads/release/v10");
+            var settings = new BuildNugetVersionFromBranchSettings { BranchName = "refs/heads/release/v10", PreReleaseFilters = new[] { "^master$", "^release/" } };
+            string version = new TestContext().BuildNugetVersionFromBranch(1, 0, 0, settings);
             Assert.Equal("1.0.0", version);
         }
 
         [Fact]
         public void Test4()
         {
-            string version = new TestContext().BuildNugetVersionFromBranch(1, 0, 0, "release/v10");
+            var settings = new BuildNugetVersionFromBranchSettings { BranchName = "release/v10", PreReleaseFilters = new[] { "^master$", "^release/" } };
+            string version = new TestContext().BuildNugetVersionFromBranch(1, 0, 0, settings);
             Assert.Equal("1.0.0", version);
         }
 
