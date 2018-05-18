@@ -156,5 +156,20 @@ namespace Cake.Nuget.Versioning.Test
             string shortenedbranchname = new string('a', 200);
             Assert.Equal($"1.0.0-{shortenedbranchname}.132.abcdabcdabcdabcdabcdabcdabcdabcdabcdabcd", version);
         }
+
+        [Fact]
+        public void Test21()
+        {
+            var settings = new BuildNugetVersionFromBranchSemVer200Settings { BranchName = "refs/heads/feature/test_cake_version+something+else", Hash = "abcdabcd", TrimPatterns = new[] { "feature/" } };
+            string version = new TestContext().BuildNugetVersionFromBranchSemVer200(1, 0, 0, settings);
+            Assert.Equal("1.0.0-test-cake-version-something-else.abcdabcd", version);
+        }
+
+        [Fact]
+        public void Test22()
+        {
+            string version = new TestContext().BuildNugetVersionFromBranchSemVer200(1, 0, 0, "refs/heads/master");
+            Assert.Equal("1.0.0", version);
+        }
     }
 }

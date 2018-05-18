@@ -110,6 +110,8 @@ namespace Cake.Nuget.Versioning
 
             branch = branch.Substring(0, Math.Min(branch.Length, 200));
 
+            var separator = GetSuffixSeparator(settings.PreReleaseFilters != null && settings.PreReleaseFilters.All(f => !Regex.IsMatch(branch, f)));
+
             if (settings.PreReleaseFilters != null && settings.PreReleaseFilters.All(f => !Regex.IsMatch(branch, f)))
             {
                 if (IsBranchPrefixNecessary(branch) || settings.AlwaysApplyBranchPrefix)
@@ -117,7 +119,7 @@ namespace Cake.Nuget.Versioning
                     branch = $"{settings.BranchPrefix}{branch}";
                 }
 
-                suffix = $"{GetSuffixSeparator(true)}{branch}";
+                suffix = branch;
                 
                 if(branchChangeNumber != null)
                 {
@@ -132,11 +134,11 @@ namespace Cake.Nuget.Versioning
             {
                 if (hash != null)
                 {
-                    suffix = $"{GetSuffixSeparator(false)}{hash}";
+                    suffix = hash;
                 }
             }
 
-            return NormalizeSuffixSemVer2(suffix, 255);
+            return string.IsNullOrEmpty(suffix) ? suffix : separator + NormalizeSuffixSemVer2(suffix, 255);
         }
 
         private static string NormalizeSuffix(string suffix, int maxLength)
@@ -147,7 +149,7 @@ namespace Cake.Nuget.Versioning
 
         private static string NormalizeSuffixSemVer2(string suffix, int maxLength)
         {
-            var normalizedSuffix = Regex.Replace(suffix, "[^A-Za-z0-9+.]", "-");
+            var normalizedSuffix = Regex.Replace(suffix, "[^A-Za-z0-9.]", "-");
             return normalizedSuffix.Substring(0, Math.Min(normalizedSuffix.Length, maxLength)).TrimEnd('-');
         }
 
