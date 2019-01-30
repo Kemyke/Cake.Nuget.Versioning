@@ -171,5 +171,13 @@ namespace Cake.Nuget.Versioning.Test
             string version = new TestContext().BuildNugetVersionFromBranchSemVer200(1, 0, 0, "refs/heads/master");
             Assert.Equal("1.0.0", version);
         }
+
+        [Fact]
+        public void Test23()
+        {
+            var settings = new BuildNugetVersionFromBranchSemVer200Settings { PreReleaseFilters = new string[]{ "^master$", "^releases/release-.*" }, BranchName = "refs/heads/releases/release-v4_2", BranchChangeNumber = 5, TrimPatterns = new[] { "feature/" } };
+            string version = new TestContext().BuildNugetVersionFromBranchSemVer200(1, 0, 3, settings);
+            Assert.Equal("1.0.8", version);
+        }
     }
 }

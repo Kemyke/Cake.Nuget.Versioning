@@ -59,21 +59,8 @@ namespace Cake.Nuget.Versioning
 
         private static string ComposeSuffix(BuildNugetVersionFromBranchSettings settings)
         {
-            string branch = settings.BranchName;
+            string branch = GetTrimmedBranchName(settings);
             string suffix = string.Empty;
-
-            if (settings.FilterGitReferences)
-            {
-                branch = TrimBranch(branch);
-            }
-
-            if (settings.TrimPatterns != null)
-            {
-                foreach (string trim in settings.TrimPatterns)
-                {
-                    branch = branch.Replace(trim, string.Empty);
-                }
-            }
 
             if (settings.PreReleaseFilters != null && settings.PreReleaseFilters.All(f => !Regex.IsMatch(branch, f)))
             {
@@ -88,11 +75,21 @@ namespace Cake.Nuget.Versioning
             return NormalizeSuffix(suffix, 20);
         }
 
-        private static string ComposeSuffixSemVer2(BuildNugetVersionFromBranchSemVer200Settings settings)
+        private static int GetPatch(int patch, string trimmedBranch, BuildNugetVersionFromBranchSemVer200Settings settings)
+        {
+            if (settings.PreReleaseFilters != null && settings.PreReleaseFilters.Any(f => Regex.IsMatch(trimmedBranch, f)))
+            {
+                return patch + (settings.BranchChangeNumber ?? 0);
+            }
+            else
+            {
+                return patch;
+            }
+        }
+
+        private static string GetTrimmedBranchName(BuildNugetVersionFromBranchSettings settings)
         {
             string branch = settings.BranchName;
-            string hash = settings.Hash;
-            int? branchChangeNumber = settings.BranchChangeNumber;
             string suffix = string.Empty;
 
             if (settings.FilterGitReferences)
@@ -107,6 +104,16 @@ namespace Cake.Nuget.Versioning
                     branch = branch.Replace(trim, string.Empty);
                 }
             }
+
+            return branch;
+        }
+
+        private static string ComposeSuffixSemVer2(BuildNugetVersionFromBranchSemVer200Settings settings)
+        {
+            string branch = GetTrimmedBranchName(settings);
+            string hash = settings.Hash;
+            int? branchChangeNumber = settings.BranchChangeNumber;
+            string suffix = string.Empty;
 
             branch = branch.Substring(0, Math.Min(branch.Length, 200));
 
@@ -273,6 +280,7 @@ namespace Cake.Nuget.Versioning
                 throw new ArgumentNullException("BranchName cannot be null!");
             }
 
+            patch = GetPatch(patch, GetTrimmedBranchName(settings), settings);
             string version = ComposeVersion(major, minor, patch);
             var suffix = ComposeSuffixSemVer2(settings);
             return $"{version}{suffix}";
