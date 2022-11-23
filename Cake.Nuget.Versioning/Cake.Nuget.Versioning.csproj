@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.0.15</Version>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>0.0.16</Version>
     <Description>Cake Build addon to build Nuget version numbers</Description>
     <Copyright>Copyright 2017</Copyright>
     <Authors>Attila Kemeny</Authors>
@@ -22,7 +22,7 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Cake.Core" Version="0.33.0" PrivateAssets="All" />
+    <PackageReference Include="Cake.Core" Version="3.0.0" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>

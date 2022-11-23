@@ -5,6 +5,7 @@ using System.Text;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Core.Tooling;
+using Cake.Core.Configuration;
 
 namespace Cake.Nuget.Versioning.Test
 {
@@ -25,5 +26,9 @@ namespace Cake.Nuget.Versioning.Test
         public IRegistry Registry => throw new NotImplementedException();
 
         public IToolLocator Tools => throw new NotImplementedException();
+
+        public ICakeDataResolver Data => throw new NotImplementedException();
+
+        public ICakeConfiguration Configuration => throw new NotImplementedException();
     }
 }
